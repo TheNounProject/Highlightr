@@ -65,11 +65,17 @@ open class Highlightr
             return nil
         }
         self.hljs = hljs
+
+
         
         guard setTheme(to: "pojoaque") else {
             return nil
         }
-        
+    }
+
+    public func setAutomaticLanguages(_ languages: [String]) {
+        let languages: Any = JSValue(object: ["languages": languages], in: self.hljs.context)!
+        hljs.invokeMethod("configure", withArguments: [languages])
     }
     
     /**
@@ -108,8 +114,8 @@ open class Highlightr
             ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
         }
 
-        let res = ret.objectForKeyedSubscript("value")
-        guard var string = res!.toString() else {
+        guard let res = ret.objectForKeyedSubscript("value"), !res.isUndefined,
+            var string = res.toString() else {
             return nil
         }
         
