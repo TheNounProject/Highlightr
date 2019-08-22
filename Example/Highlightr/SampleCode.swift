@@ -9,17 +9,16 @@ import UIKit
 import Highlightr
 import ActionSheetPicker_3_0
 
-enum pickerSource : Int {
+enum pickerSource: Int {
     case theme = 0
     case language
 }
 
-class SampleCode: UIViewController
-{
+class SampleCode: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var viewPlaceholder: UIView!
-    var textView : UITextView!
+    var textView: UITextView!
     @IBOutlet var textToolbar: UIToolbar!
     
     @IBOutlet weak var languageName: UILabel!
@@ -27,12 +26,10 @@ class SampleCode: UIViewController
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var highlightr : Highlightr!
+    var highlightr: Highlightr!
     let textStorage = CodeAttributedString()
     
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         activityIndicator.isHidden = true
@@ -62,13 +59,11 @@ class SampleCode: UIViewController
         updateColors()
     }
 
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func pickLanguage(_ sender: AnyObject)
-    {
+    @IBAction func pickLanguage(_ sender: AnyObject) {
         let languages = highlightr.supportedLanguages().sorted()
         let indexOrNil = languages.index(of: languageName.text!.lowercased())
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
@@ -76,8 +71,7 @@ class SampleCode: UIViewController
         ActionSheetStringPicker.show(withTitle: "Pick a Language",
                                      rows: languages,
                                      initialSelection: index,
-                                     doneBlock:
-            { picker, index, value in
+                                     doneBlock: { _, _, value in
                 let language = value! as! String
                 self.textStorage.language = language
                 self.languageName.text = language.capitalized
@@ -91,8 +85,7 @@ class SampleCode: UIViewController
 
     }
 
-    @IBAction func performanceTest(_ sender: AnyObject)
-    {
+    @IBAction func performanceTest(_ sender: AnyObject) {
         let code = textStorage.string
         let languageName = self.languageName.text
         activityIndicator.isHidden = false
@@ -100,15 +93,14 @@ class SampleCode: UIViewController
 
         DispatchQueue.global(qos: .userInteractive).async {
             let start = Date()
-            for _ in 0...100
-            {
+            for _ in 0...100 {
                 _ = self.highlightr.highlight(code, as: languageName)
             }
             let end = Date()
-            let time = Float(end.timeIntervalSince(start));
+            let time = Float(end.timeIntervalSince(start))
             
-            let avg = String(format:"%0.4f", time/100)
-            let total = String(format:"%0.3f", time)
+            let avg = String(format: "%0.4f", time/100)
+            let total = String(format: "%0.3f", time)
             
             let alert = UIAlertController(title: "Performance test", message: "This code was highlighted 100 times. \n It took an average of \(avg) seconds to process each time,\n with a total of \(total) seconds", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -123,8 +115,7 @@ class SampleCode: UIViewController
         
     }
     
-    @IBAction func pickTheme(_ sender: AnyObject)
-    {
+    @IBAction func pickTheme(_ sender: AnyObject) {
         hideKeyboard(nil)
         let themes = highlightr.availableThemes()
         let indexOrNil = themes.index(of: themeName.text!.lowercased())
@@ -133,8 +124,7 @@ class SampleCode: UIViewController
         ActionSheetStringPicker.show(withTitle: "Pick a Theme",
                                      rows: themes,
                                      initialSelection: index,
-                                     doneBlock:
-            { picker, index, value in
+                                     doneBlock: { _, _, value in
                 let theme = value! as! String
                 self.textStorage.highlightr.setTheme(to: theme)
                 self.themeName.text = theme.capitalized
@@ -145,13 +135,11 @@ class SampleCode: UIViewController
         
     }
     
-    @IBAction func hideKeyboard(_ sender: AnyObject?)
-    {
+    @IBAction func hideKeyboard(_ sender: AnyObject?) {
         textView.resignFirstResponder()
     }
     
-    func updateColors()
-    {
+    func updateColors() {
         textView.backgroundColor = highlightr.theme.themeBackgroundColor
         navBar.barTintColor = highlightr.theme.themeBackgroundColor
         navBar.tintColor = invertColor(navBar.barTintColor!)
@@ -161,10 +149,9 @@ class SampleCode: UIViewController
         toolBar.tintColor = navBar.tintColor
     }
     
-    func invertColor(_ color: UIColor) -> UIColor
-    {
-        var r:CGFloat = 0, g:CGFloat = 0, b:CGFloat = 0
+    func invertColor(_ color: UIColor) -> UIColor {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
         color.getRed(&r, green: &g, blue: &b, alpha: nil)
-        return UIColor(red:1.0-r, green: 1.0-g, blue: 1.0-b, alpha: 1)
+        return UIColor(red: 1.0-r, green: 1.0-g, blue: 1.0-b, alpha: 1)
     }
 }

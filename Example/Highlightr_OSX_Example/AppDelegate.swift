@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     
-    var textView : NSTextView!
+    var textView: NSTextView!
     let textStorage = CodeAttributedString()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -30,12 +30,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         
-        let textContainer = NSTextContainer(size:(window.contentView?.bounds.size)!)
+        let textContainer = NSTextContainer(size: (window.contentView?.bounds.size)!)
         layoutManager.addTextContainer(textContainer)
         
-        
         textView = NSTextView(frame: (window.contentView?.bounds)!, textContainer: textContainer)
-        textView.autoresizingMask = [.width,.height]
+        textView.autoresizingMask = [.width, .height]
         textView.translatesAutoresizingMaskIntoConstraints = true
         textView.backgroundColor = (textStorage.highlightr.theme.themeBackgroundColor)!
         textView.insertionPointColor = NSColor.white
@@ -47,6 +46,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
 }
-
