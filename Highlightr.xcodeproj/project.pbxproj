@@ -179,6 +179,12 @@
 		8CD1AE201F39171B000FDA02 /* HTMLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1ADCF1F39126B000FDA02 /* HTMLUtils.swift */; };
 		8CD1AE211F39171B000FDA02 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1ADD01F39126B000FDA02 /* Theme.swift */; };
 		8CD1AE241F39172D000FDA02 /* highlight.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8CD1ADDC1F3912F2000FDA02 /* highlight.min.js */; };
+		DE9232B823145D7B0084DD98 /* SFMono-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B523145D7B0084DD98 /* SFMono-Bold.otf */; };
+		DE9232B923145D7B0084DD98 /* SFMono-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B523145D7B0084DD98 /* SFMono-Bold.otf */; };
+		DE9232BA23145D7B0084DD98 /* SFMono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B623145D7B0084DD98 /* SFMono-Regular.otf */; };
+		DE9232BB23145D7B0084DD98 /* SFMono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B623145D7B0084DD98 /* SFMono-Regular.otf */; };
+		DE9232BC23145D7B0084DD98 /* SFMono-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B723145D7B0084DD98 /* SFMono-RegularItalic.otf */; };
+		DE9232BD23145D7B0084DD98 /* SFMono-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9232B723145D7B0084DD98 /* SFMono-RegularItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -274,6 +280,9 @@
 		8CD1AE181F391713000FDA02 /* Highlightr-macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Highlightr-macOS.h"; sourceTree = "<group>"; };
 		8CD1AE191F391713000FDA02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD1AE261F391802000FDA02 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		DE9232B523145D7B0084DD98 /* SFMono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFMono-Bold.otf"; sourceTree = "<group>"; };
+		DE9232B623145D7B0084DD98 /* SFMono-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFMono-Regular.otf"; sourceTree = "<group>"; };
+		DE9232B723145D7B0084DD98 /* SFMono-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFMono-RegularItalic.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +426,9 @@
 		8CD1ADD51F391290000FDA02 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DE9232B523145D7B0084DD98 /* SFMono-Bold.otf */,
+				DE9232B623145D7B0084DD98 /* SFMono-Regular.otf */,
+				DE9232B723145D7B0084DD98 /* SFMono-RegularItalic.otf */,
 				8CC1C4841F3A631E0093293D /* Styles */,
 				8CD1ADDC1F3912F2000FDA02 /* highlight.min.js */,
 			);
@@ -580,6 +592,7 @@
 				8CC1C7651F3A636B0093293D /* rainbow.min.css in Resources */,
 				8CC1C7351F3A636B0093293D /* github.min.css in Resources */,
 				8CC1C7811F3A636B0093293D /* xt256.min.css in Resources */,
+				DE9232BA23145D7B0084DD98 /* SFMono-Regular.otf in Resources */,
 				8CC1C7171F3A636B0093293D /* atom-one-dark.min.css in Resources */,
 				8CC1C73B1F3A636B0093293D /* gruvbox-dark.min.css in Resources */,
 				8CC1C7091F3A636B0093293D /* atelier-plateau-light.min.css in Resources */,
@@ -602,6 +615,7 @@
 				8CC1C7491F3A636B0093293D /* kimbie.light.min.css in Resources */,
 				8CC1C7071F3A636B0093293D /* atelier-plateau-dark.min.css in Resources */,
 				8CC1C76F1F3A636B0093293D /* sunburst.min.css in Resources */,
+				DE9232BC23145D7B0084DD98 /* SFMono-RegularItalic.otf in Resources */,
 				8CC1C72B1F3A636B0093293D /* docco.min.css in Resources */,
 				8CC1C7471F3A636B0093293D /* kimbie.dark.min.css in Resources */,
 				8CC1C7291F3A636B0093293D /* default.min.css in Resources */,
@@ -622,6 +636,7 @@
 				8CC1C7191F3A636B0093293D /* atom-one-light.min.css in Resources */,
 				8CC1C6F51F3A636B0093293D /* atelier-dune-light.min.css in Resources */,
 				8CC1C7731F3A636B0093293D /* tomorrow-night-bright.min.css in Resources */,
+				DE9232B823145D7B0084DD98 /* SFMono-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +682,7 @@
 				8CC1C7661F3A636B0093293D /* rainbow.min.css in Resources */,
 				8CC1C7361F3A636B0093293D /* github.min.css in Resources */,
 				8CC1C7821F3A636B0093293D /* xt256.min.css in Resources */,
+				DE9232BB23145D7B0084DD98 /* SFMono-Regular.otf in Resources */,
 				8CC1C7181F3A636B0093293D /* atom-one-dark.min.css in Resources */,
 				8CC1C73C1F3A636B0093293D /* gruvbox-dark.min.css in Resources */,
 				8CC1C70A1F3A636B0093293D /* atelier-plateau-light.min.css in Resources */,
@@ -689,6 +705,7 @@
 				8CC1C74A1F3A636B0093293D /* kimbie.light.min.css in Resources */,
 				8CC1C7081F3A636B0093293D /* atelier-plateau-dark.min.css in Resources */,
 				8CC1C7701F3A636B0093293D /* sunburst.min.css in Resources */,
+				DE9232BD23145D7B0084DD98 /* SFMono-RegularItalic.otf in Resources */,
 				8CC1C72C1F3A636B0093293D /* docco.min.css in Resources */,
 				8CC1C7481F3A636B0093293D /* kimbie.dark.min.css in Resources */,
 				8CC1C72A1F3A636B0093293D /* default.min.css in Resources */,
@@ -709,6 +726,7 @@
 				8CC1C71A1F3A636B0093293D /* atom-one-light.min.css in Resources */,
 				8CC1C6F61F3A636B0093293D /* atelier-dune-light.min.css in Resources */,
 				8CC1C7741F3A636B0093293D /* tomorrow-night-bright.min.css in Resources */,
+				DE9232B923145D7B0084DD98 /* SFMono-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

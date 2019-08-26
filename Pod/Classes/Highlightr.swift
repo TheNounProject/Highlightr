@@ -73,6 +73,10 @@ open class Highlightr
         }
     }
 
+    static private func loadFonts() {
+
+    }
+
     public func setAutomaticLanguages(_ languages: [String]) {
         let languages: Any = JSValue(object: ["languages": languages], in: self.hljs.context)!
         hljs.invokeMethod("configure", withArguments: [languages])

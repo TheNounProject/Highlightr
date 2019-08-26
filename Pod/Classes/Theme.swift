@@ -32,18 +32,18 @@ open class Theme {
     internal var lightTheme: String!
     
     /// Regular font to be used by this theme
-    open var codeFont: RPFont!
+    open var codeFont: RPFont
     /// Bold font to be used by this theme
-    open var boldCodeFont: RPFont!
+    open var boldCodeFont: RPFont
     /// Italic font to be used by this theme
-    open var italicCodeFont: RPFont!
+    open var italicCodeFont: RPFont
     
     private var themeDict: RPThemeDict!
     private var strippedTheme: RPThemeStringDict!
     
     /// Default background color for the current theme.
     open var themeBackgroundColor: RPColor!
-    
+
     /**
      Initialize the theme with the given theme name.
      
@@ -51,7 +51,12 @@ open class Theme {
      */
     init(themeString: String) {
         theme = themeString
-        setCodeFont(RPFont(name: "Courier", size: 14)!)
+
+        let defaultFonts = Theme.loadDefaultFont()
+        self.codeFont = defaultFonts.regular
+        self.italicCodeFont = defaultFonts.italic
+        self.boldCodeFont = defaultFonts.bold
+
         strippedTheme = stripTheme(themeString)
         lightTheme = strippedThemeToString(strippedTheme)
         themeDict = strippedThemeToTheme(strippedTheme)
@@ -73,7 +78,38 @@ open class Theme {
             themeBackgroundColor = RPColor.white
         }
     }
-    
+
+    open class func loadDefaultFont() -> (regular: RPFont, italic: RPFont, bold: RPFont) {
+        func loadFont(name: String) -> RPFont {
+            if let f = RPFont(name: name, size: 14) {
+                return f
+            }
+            let bundle = Bundle(for: Highlightr.self)
+            guard let url = bundle.url(forResource: name, withExtension: "otf"),
+                let provider = CGDataProvider(url: url as CFURL),
+                let font = CGFont(provider)  else {
+                assertionFailure("Failed to load font")
+                return RPFont()
+            }
+            return CTFontCreateWithGraphicsFont(font, 14, nil, nil)
+        }
+
+        return (
+            loadFont(name: "SFMono-Regular"),
+            loadFont(name: "SFMono-RegularItalic"),
+            loadFont(name: "SFMono-Bold")
+        )
+    }
+
+    open func setFont(size: CGFloat) {
+        let manager = NSFontManager.shared
+        self.codeFont = manager.convert(self.codeFont, toSize: size)
+        self.boldCodeFont = manager.convert(self.boldCodeFont, toSize: size)
+        self.italicCodeFont = manager.convert(self.italicCodeFont, toSize: size)
+
+
+    }
+
     /**
      Changes the theme font. This will try to automatically populate the codeFont, boldCodeFont and italicCodeFont properties based on the provided font.
      
@@ -98,21 +134,12 @@ open class Theme {
                                                                       .face: "Oblique"])
         #endif
         
-        boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
-        italicCodeFont = RPFont(descriptor: italicDescriptor, size: font.pointSize)
-        
-        if(italicCodeFont == nil || italicCodeFont.familyName != font.familyName)
-        {
-            italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
+        self.boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)  ?? font
+        if let italic = RPFont(descriptor: italicDescriptor, size: font.pointSize) {
+            self.italicCodeFont = italic
+        } else if italicCodeFont.familyName != font.familyName, let italic = RPFont(descriptor: obliqueDescriptor, size: font.pointSize) {
+            self.italicCodeFont = italic
         }
-        if(italicCodeFont == nil) {
-            italicCodeFont = font
-        }
-        
-        if(boldCodeFont == nil) {
-            boldCodeFont = font
-        }
-
         if(themeDict != nil) {
             themeDict = strippedThemeToTheme(strippedTheme)
         }
@@ -134,7 +161,7 @@ open class Theme {
             
             returnString = NSAttributedString(string: string, attributes: attrs )
         } else {
-            returnString = NSAttributedString(string: string, attributes: [AttributedStringKey.font: codeFont!] )
+            returnString = NSAttributedString(string: string, attributes: [AttributedStringKey.font: codeFont] )
         }
         
         return returnString
