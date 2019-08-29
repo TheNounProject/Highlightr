@@ -26,6 +26,8 @@ import Foundation
 private typealias RPThemeDict = [String: [AnyHashable: AnyObject]]
 private typealias RPThemeStringDict = [String: [String: String]]
 
+public typealias HighlightrTheme = Theme
+
 /// Theme parser, can be used to configure the theme parameters. 
 open class Theme {
     internal let theme: String
